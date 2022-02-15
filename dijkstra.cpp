@@ -14,15 +14,6 @@ vector<pair<int,int>>adj[MAX];
 int handle[MAX];
 int d[MAX];
 
-int extractMin()
-{
-	struct node temp=A[1];
-	A[1]=A[heapSize];
-	heapSize--;
-	handle[A[1].vertex]=1;
-	return temp.vertex;
-}
-
 void heapify(int node)
 {
 	int val=A[node].key;
@@ -43,6 +34,16 @@ void heapify(int node)
 		heapify(index);
 	}
 }
+int extractMin()
+{
+	struct node temp=A[1];
+	A[1]=A[heapSize];
+	heapSize--;
+	handle[A[1].vertex]=1;
+	heapify(1);
+	return temp.vertex;
+}
+
 
 void decreaseKey(int index,int newKey)
 {
